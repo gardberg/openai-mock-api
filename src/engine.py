@@ -2,7 +2,7 @@ from http import HTTPStatus
 from protocol import *
 from fastapi import Request
 
-from responses import mock_completions_response
+from responses import mock_completions_response, mock_chat_completions_response
 
 class MockEngine:
     model: str
@@ -20,7 +20,7 @@ class MockEngine:
         return ModelList(data=model_cards)
 
     async def create_chat_completion(self, request: ChatCompletionRequest, raw_request: Request) -> ChatCompletionResponse:
-        return  
+        return mock_chat_completions_response  
     
     async def create_completion(self, request: CompletionRequest, raw_request: Request) -> CompletionResponse:
         return mock_completions_response

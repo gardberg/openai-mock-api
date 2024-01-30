@@ -16,14 +16,14 @@ logger = logging.getLogger(__name__)
 
 def test_health():
     response = requests.get(urljoin(URL, "health"))
-    print(f"/health response: {response}")
+    print(f"\n/health response:\n{response}\n")
     assert response.status_code == 200
 
 
 
 def test_models():
     response = requests.get(urljoin(URL, "v1/models"))
-    print(f"/v1/models response: {response.json()}")
+    print(f"\n/v1/models response:\n{response.json()}\n")
     assert response.status_code == 200
     assert response.json()["object"] == "list"
     assert response.json()["data"][0]["id"] == MODEL
@@ -43,7 +43,7 @@ def test_completions():
     }
 
     response = requests.post(urljoin(URL, "v1/completions"), headers=headers, json=data)
-    print(f"/v1/completions response: {response.json()}")
+    print(f"\n/v1/completions response:\n{response.json()}\n")
     
     assert response.status_code == 200
     
@@ -69,3 +69,6 @@ def test_chat_completions():
     }
 
     response = requests.post(urljoin(URL, "v1/chat/completions"), headers=headers, json=data)
+    print(f"\n/v1/chat/completions response:\n{response.json()}\n")
+
+    assert response.status_code == 200
